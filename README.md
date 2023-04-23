@@ -36,12 +36,16 @@ PropTypes:
 
 
 # Q3. Please fix, optimize, and/or modify the component as much as you think is necessary.
+
 ```ruby
 import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 
-// Single List Item
-const SingleListItem = memo(({ index, isSelected, onClickHandler, text }) => {
+const SingleListItem = memo(({ 
+    index, 
+    isSelected, 
+    onClickHandler, 
+    text }) => {
   return (
     <li
       style={{ backgroundColor: isSelected ? 'green' : 'red' }}
@@ -59,7 +63,6 @@ SingleListItem.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-// List Component
 const List = memo(({ items }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -67,7 +70,7 @@ const List = memo(({ items }) => {
     setSelectedIndex(null);
   }, [items]);
 
-  const handleClick = index => {
+  const handleClick = (index) => {
     setSelectedIndex(index);
   };
 
@@ -87,13 +90,24 @@ const List = memo(({ items }) => {
 });
 
 List.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
+  items: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
+List.defaultProps = { 
+    items: [
+      { text: "Uttam" },
+      { text: "12002071" },
+      { text: "LPU" },
+      { text: "B-Tech" },
+      { text: "CSE" },
+  
+    ],
+  };
 
 export default List;
 ```
+
+
 
